@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JECA Quiz & College Mock Test</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container active" id="welcome-page">
+    <h1>Welcome</h1><!-- JECA Quiz Section -->
+<div class="section">
+  <h2>JECA Quiz</h2>
+  <div class="topics">
+    <button onclick="startQuiz('Machine Learning')">Machine Learning</button>
+    <button onclick="startQuiz('Software Engineering')">Software Engineering</button>
+    <button onclick="startQuiz('DBMS')">DBMS</button>
+    <button onclick="startQuiz('Computer Graphics')">Computer Graphics</button>
+    <button onclick="startQuiz('Operating System')">Operating System</button>
+    <button onclick="startQuiz('Data Structure')">Data Structure</button>
+  </div>
+</div>
+
+<!-- College Mock Test Section -->
+<div class="section">
+  <h2>College Mock Test</h2>
+  <div class="year-section">
+    <h3>1st Year</h3>
+    <div>
+      <h4>1st Semester</h4>
+      <button onclick="startCollegeMock('C')">C</button>
+      <button onclick="startCollegeMock('Computer Architecture')">Computer Architecture</button>
+    </div>
+    <div>
+      <h4>2nd Semester</h4>
+      <button onclick="startCollegeMock('Java')">Java</button>
+      <button onclick="startCollegeMock('Data Structure')">Data Structure</button>
+    </div>
+  </div>
+  <div class="year-section">
+    <h3>2nd Year</h3>
+    <div>
+      <h4>3rd Semester</h4>
+      <button onclick="startCollegeMock('Python')">Python</button>
+      <button onclick="startCollegeMock('Operating System')">Operating System</button>
+    </div>
+    <div>
+      <h4>4th Semester</h4>
+      <button onclick="startCollegeMock('Software Engineering')">Software Engineering</button>
+      <button onclick="startCollegeMock('Internet Technology')">Internet Technology</button>
+    </div>
+  </div>
+  <div class="year-section">
+    <h3>3rd Year</h3>
+    <div>
+      <h4>5th Semester</h4>
+      <button onclick="startCollegeMock('Cyber Security')">Cyber Security</button>
+      <button onclick="startCollegeMock('Cloud Computing')">Cloud Computing</button>
+    </div>
+    <div>
+      <h4>6th Semester</h4>
+      <button onclick="startCollegeMock('Ai')">AI</button>
+      <button onclick="startCollegeMock('Soft Computing')">Soft Computing</button>
+    </div>
+  </div>
+</div>
+
+  </div>  <!-- Quiz Page -->  <div class="container" id="quiz-page">
+    <h2 id="quiz-topic"></h2>
+    <p id="timer" style="font-size: 20px; margin-bottom: 20px;">Time Left: 05:00</p>
+    <div class="question" id="question-text"></div>
+    <div class="options" id="options"></div>
+    <button onclick="goBackToWelcome()">Back</button>
+  </div>  <!-- Result Page -->  <div class="container" id="result-page">
+    <h2>Quiz Completed!</h2>
+    <p id="score-text"></p>
+    <button onclick="restartQuiz()">Play Again</button>
+    <button onclick="goBackToWelcome()">Back</button>
+  </div>  <script src="questions.js"></script>  <script src="script.js"></script>  <script>
+    function startCollegeMock(subject) {
+      selectedTopic = subject;
+      currentQuiz = quizData[subject] || [];
+      currentIndex = 0;
+      score = 0;
+      switchPage("quiz-page");
+      showQuestion();
+      startTimer(120); // 2 minutes
+    }
+
+    function startTimer(seconds = 300) {
+      clearInterval(timer);
+      timeLeft = seconds;
+      updateTimer();
+      timer = setInterval(() => {
+        timeLeft--;
+        updateTimer();
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          alert("Time's up!");
+          showResult();
+        }
+      }, 1000);
+    }
+  </script></body>
+</html>
